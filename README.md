@@ -53,6 +53,29 @@ HLT;
 
 ```
 
+## MULTPLICATION OF 16 BIT
+```
+MOV AX, [3000H];
+MOV BX, [3002H];
+MUL BX;
+MOV [3004H], AX;
+MOV AX, DX;
+MOV [3006H], DX;
+HLT;
+ 
+```
+## MULTPLICATION OF 16 BIT
+```
+MOV AX, [3000H];
+MOV BX, [3002H];
+DIV BX;
+MOV [3004H], AX;
+MOV AX, DX;
+MOV [3006H], DX;
+HLT;
+ 
+```
+
 ## 8 bit bcd addition
 ```
 mov [4000H],14H;
