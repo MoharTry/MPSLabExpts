@@ -78,13 +78,13 @@ HLT;
 
 ## 8 bit bcd addition
 ```
-mov al,[4000h];
-mov bl,[4001h];
+MOV AL,[4000h];
+MOV BL,[4001h];
 
-add al,bl;
-daa;
-mov [4002h],al;
-hlt;
+ADD AL, BL;
+DAA;
+MOV [4002h],AL;
+HLT;
 ```
 
 ## 16 bit bcd addition 
@@ -112,13 +112,13 @@ hlt;
 
 ## 8 bit bcd subtraction
 ```
-mov al,[4000h];
-mov bl,[4001h];
+MOV AL,[4000h];
+MOV BL,[4001h];
 
-SUB al,bl;
-daS;
-mov [4002h],al;
-hlt;
+SUB AL, BL;
+DAS;
+MOV [4002h],AL;
+HLT;
 ```
 
 ## 16 bit bcd subtraction
