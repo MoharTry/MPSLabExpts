@@ -1,1 +1,191 @@
 # MPSLabExpts
+
+## 16 bit addition with carry
+```
+MOV AX, [3000H];
+MOV BX, [3002H];
+ADD AX,BX;
+JNC BACK;
+INC CX;
+BACK: MOV [3004H], AX;
+MOV [3006H], CX;
+HLT;
+
+```
+## 32 bit addition with carry
+```
+MOV AX, [3000H];
+MOV BX, [3002H];
+MOV CX, [3004H];
+MOV DX, [3006H];
+ADD AX,CX;
+ADC BX, DX;
+MOV [3008H], AX;
+MOV [300AH], BX;
+HLT;
+
+```
+
+## 16 bit subtraction with borrow
+```
+MOV CX, 0000H;
+MOV AX, [3000H];
+MOV BX, [3002H];
+SUB AX, BX;
+JNC BACK;
+INC CX;
+BACK: MOV [3004H], AX;
+MOV [3006H], CX;
+HLT;
+
+```
+## 32 bit subtraction with borrow
+```
+MOV AX, [3000H];
+MOV BX, [3002H];
+MOV CX, [3004H];
+MOV DX, [3006H];
+SUB AX, CX;
+SBB BX, DX;
+MOV [3008H], AX;
+MOV [300AH], BX;
+HLT;
+
+```
+
+## 8 bit bcd addition
+```
+mov [4000H],14H;
+mov [4001h],28H;
+
+mov al,[4000h];
+mov bl,[4001h];
+
+add al,bl;
+daa;
+mov [4002h],al;
+hlt;
+```
+
+## 16 bit bcd addition 
+```
+mov [4000H],7879H;
+mov [4002h],7773H;
+
+mov al,[4000h];
+mov bl,[4002h];
+
+add al,bl;
+daa;
+mov [4011h],al;
+mov al,[4001h];
+mov bl,[4003h];
+adc al,bl;
+daa;
+
+mov [4012h],al;
+mov al,00;
+adc al,al;
+mov [4010h],al;
+
+
+
+hlt;
+```
+
+## 8 bit bcd subtraction
+```
+mov [4000H],108H;
+mov [4001h],30H;
+
+mov al,[4000h];
+mov bl,[4001h];
+
+sub al,bl;
+das;
+mov [4002h],al;
+mov al,00h;
+
+adc al,al;
+
+mov [4003h],al;
+hlt;
+```
+
+## 16 bit bcd subtraction
+```
+mov [4000H],7879H;
+mov [4002h],7773H;
+
+mov al,[4000h];
+mov bl,[4002h];
+
+sub al,bl;
+das;
+mov [4012h],al;
+mov al,[4001h];
+mov bl,[4003h];
+sbb al,bl;
+das;
+
+mov [4011h],al;
+mov al,00;
+```
+
+## 4-byte data transfer
+
+```
+mov si,500h;
+mov di,6000h;
+mov ax,0000h;
+mov cx,0004h;
+
+cld;
+rep;
+movsb;
+hlt;
+```
+
+## Sorting of 8-bit data in ascending order
+```
+mov [4500h],96h;
+mov [4501h],68h;
+mov [4502h],70h;
+mov [4503h],60h;
+mov [4504h],40h;
+mov [4505h],55h;
+mov [4506h],76h;
+mov [4507h],20h;
+mov [4508h],11h;
+mov [4509h],38h;
+
+mov di,4500h;
+mov si,4500h;
+mov cl,09h;
+mov ch,00h;
+
+loop2:
+mov bx,si;
+mov al,[si];
+mov ah,cl;
+inc si;
+
+loop1:
+cmp al,[si];
+jc skip;
+mov bx,si;
+mov al,[si];
+
+skip:
+inc si;
+dec ah;
+jnz loop1;
+
+mov dl,[bx];
+xchg dl,[di];
+xchg dl,[bx];
+inc di;
+mov si,di;
+loop loop2;
+hlt
+```
